@@ -1,5 +1,6 @@
 import Banner from "./component/Banner"
 import Navbar from "./component/Navbar"
+import OurRecipies from "./component/OurRecipies"
 
 function App() {
 
@@ -7,6 +8,7 @@ function App() {
     <> 
     <Navbar></Navbar>
     <Banner></Banner>
+    <OurRecipies></OurRecipies>
     </>
   )
 }
