@@ -8,9 +8,15 @@ import Sidebar from "./component/Sidebar"
 function App() {
   const [cook,setCook]=useState([]);
 
-  const handleCook = (newCook)=>{
-    setCook([...cook,newCook])
-  }
+  const handleCook = (newCook) => {
+    const exists = cook.some((item) => item.recipe_id === newCook.recipe_id);
+  
+    if (exists) {
+      alert("This recipe is already added!");
+    } else {
+      setCook([...cook, newCook]);
+    }
+  };
 
   return (
     <> 
