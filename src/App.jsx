@@ -7,6 +7,11 @@ import Sidebar from "./component/Sidebar"
 
 function App() {
   const [cook,setCook]=useState([]);
+  const [preaparing,setPreparing]=useState([])
+  const [totalTime,setTotalTime]=useState(0)
+  const [totalCalories,setTotalCalories]=useState(0)
+
+  
 
   const handleCook = (newCook) => {
     const exists = cook.some((item) => item.recipe_id === newCook.recipe_id);
@@ -17,6 +22,21 @@ function App() {
       setCook([...cook, newCook]);
     }
   };
+  const handleRemove=(id)=>{
+    // find which recipe to remove 
+    const deleteRecipe = cook.find(item=>item.recipe_id===id)
+
+    // remove from want to cook table 
+    const updatedRecipe= cook.filter(item=>item.recipe_id !==id)
+    setCook(updatedRecipe)
+    setPreparing([...preaparing,deleteRecipe])
+  }
+
+  const calculateTotalTimeandCalories=(time,calorie)=>{
+    setTotalTime(prevTime => prevTime + parseInt(time, 10));
+  setTotalCalories(prevCalories => prevCalories + parseInt(calorie, 10));
+
+  }
 
   return (
     <> 
@@ -29,7 +49,13 @@ function App() {
       <Recipies handleCook={handleCook}></Recipies>
 
       {/* want to cook  section */}
-      <Sidebar cook={cook}></Sidebar>
+      <Sidebar preaparing={preaparing}
+       cook={cook} 
+       handleRemove={handleRemove}
+       calculateTotalTimeandCalories={calculateTotalTimeandCalories}
+       totalTime={totalTime}
+       totalCalories={totalCalories}
+       ></Sidebar>
     </section>
     </>
   )
