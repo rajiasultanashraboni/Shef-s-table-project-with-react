@@ -1,4 +1,4 @@
-const Recipie = ({recipie}) => {
+const Recipie = ({recipie,handleCook}) => {
     const {calories,preparing_time,ingredients,short_description,recipe_name,recipe_id,recipe_image,} = recipie;
     return (
         <div className="">
@@ -10,7 +10,7 @@ const Recipie = ({recipie}) => {
             </figure>
             <div className="card-body">
                 <h2 className="card-title">{recipe_name}</h2>
-                <p className="border-b">{short_description}</p>
+                <p className="border-b border-b-gray-400 ">{short_description}</p>
                 <h3 className="text-2xl font-bold">Ingredients:{ingredients.length}</h3>
                 <ul className="list-disc px-6">
                     {
@@ -31,7 +31,7 @@ const Recipie = ({recipie}) => {
 
                 </div>
                 <div className="card-actions">
-                <button className="bg-green-300 rounded-full py-1 px-4 text-xl">Want to cook</button>
+                <button onClick={()=>handleCook(recipie)} className="bg-green-300 rounded-full py-1 px-4 text-xl">Want to cook</button>
                 </div>
             </div>
             </div>

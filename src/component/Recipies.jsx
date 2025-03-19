@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Recipie from "./Recipie";
 
-const Recipies = () => {
+const Recipies = ({handleCook}) => {
     const [recipies,setRecipes]=useState([])
     useEffect(()=>{
         fetch('Recipeis.json')
@@ -11,7 +11,7 @@ const Recipies = () => {
     return (
         <div className="md:w-2/3 grid grid-cols-1 md:grid-cols-2 gap-6">
             {
-                recipies.map((recipie,idx)=><Recipie key={idx} recipie={recipie}></Recipie>)
+                recipies.map((recipie,idx)=><Recipie handleCook={handleCook} key={idx} recipie={recipie}></Recipie>)
             }
         </div>
     );
